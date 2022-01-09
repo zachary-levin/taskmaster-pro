@@ -28,7 +28,11 @@ var createTask = function(taskText, taskDate, taskList) {
   var taskP = $("<p>")
     .addClass("m-1")
     .text(taskText);
+  console.log("createTask", taskText);
 
+    if (taskText === "") {
+      return;
+    }
   // append span and p element to parent li
   taskLi.append(taskSpan, taskP);
 
@@ -57,7 +61,12 @@ var loadTasks = function() {
     
     // then loop over sub-array
     arr.forEach(function(task) {
-      createTask(task.text, task.date, list);
+      if (task.text !== "")
+      {
+        createTask(task.text, task.date, list);
+      }
+      
+      console.log(task.text);
     });
   });
 };
